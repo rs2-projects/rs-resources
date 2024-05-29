@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Default Image Demo</title>
+
+    <script>
+        function ldi(img,type='user') {
+            let defaultImage = './avatar.png';if(type == 'blog') {defaultImage = './blog.png';} img.setAttribute('src', defaultImage);
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <p>User Image</p>
+        <img src="sdlkaf/sdll.png" alt="Invalid User Image" onerror="ldi(this)">
+    </div>
+
+    <div>
+        <p>Blog Image</p>
+        <img src="sdlkaf/sdll.png" alt="Invalid Blog Image" onerror="ldi(this, 'blog')">
+    </div>
+</body>
+</html>
