@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* Custom Offcanvas Styles */
+.custom-offcanvas-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: stretch;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.custom-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.4s ease-in-out;
+    opacity: 0;
+}
+
+.cow-inner-wrapper {
+    width: 50%;
+    max-width: 400px;
+    height: 100vh;
+    background: #fff;
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+}
+
+.custom-offcanvas-wrapper.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+.custom-offcanvas-wrapper.open .custom-overlay {
+    opacity: 1;
+}
+
+.custom-offcanvas-wrapper.open .cow-inner-wrapper {
+    transform: translateX(0);
+}
+
+.custom-offcanvas-wrapper .close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #000;
+    cursor: pointer;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <button type="button" onclick="openCustomOffcanvas()">Open Canvas</button>
+
+      <!-- Custom Offcanvas start -->
+      <div class="custom-offcanvas-wrapper">
+        <div class="custom-overlay" onclick="closeCustomOffcanvas()"></div>
+        <div class="cow-inner-wrapper">
+            <div class="cow-inner">
+                <div class="cow-header">
+                    <span>Header</span>
+                    <button class="close-btn" onclick="closeCustomOffcanvas()">&times;</button>
+                </div>
+                <div class="cow-body">
+                    Body Content
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Custom Offcanvas end -->
+
+
+    <script>
+        function openCustomOffcanvas() {
+                const offcanvas = document.querySelector('.custom-offcanvas-wrapper');
+                offcanvas.style.visibility = 'visible';
+                offcanvas.style.opacity = '1';
+                offcanvas.classList.add('open');
+            }
+        
+            function closeCustomOffcanvas() {
+                const offcanvas = document.querySelector('.custom-offcanvas-wrapper');
+                offcanvas.classList.remove('open');
+        
+                // Ensure visibility and opacity transition smoothly
+                setTimeout(() => {
+                    if (!offcanvas.classList.contains('open')) {
+                        offcanvas.style.visibility = 'hidden';
+                        offcanvas.style.opacity = '0';
+                    }
+                }, 400); // Matches transition duration
+            }
+        </script>
+
+</body>
+</html>
