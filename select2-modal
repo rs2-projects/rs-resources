@@ -1,0 +1,32 @@
+Step1: Create an external js file > custom-select2.js
+    function initializeGlobalSelect2() {
+        $(".select2").select2({
+            closeOnSelect: true,
+            containerCssClass: "select2-box-container",
+            dropdownCssClass: "select2-box-dropdown",
+            width: '100%'
+        });
+    }
+    
+    function initializeModalSelect2(modalClass, selectClass) {
+        $(document).on('shown.bs.modal', modalClass, function () {
+            $(selectClass, this).select2({
+                dropdownParent: $(this),
+                width: '100%'
+            });
+        });
+    }
+
+Step2: In index.blade file > Import that js file:
+  <script src="{{ asset('assets/js/custom-select2.js') }}"></script>
+
+Step3: In index.blade file >>
+      $(document).ready(function() {
+            initializeGlobalSelect2();
+            initializeModalSelect2('.modal', '.select2-create');
+            initializeModalSelect2('.modal', '.select2-edit');
+      });
+
+Step4: Add the following classes to the select fields where want to initialize select2 
+    Create modal: select2 select2-create
+    Edit modal: select2 select2-edit
